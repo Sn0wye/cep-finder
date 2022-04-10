@@ -6,7 +6,7 @@ function App() {
   const [input, setInput] = useState('');
   const [cep, setCep] = useState({});
 
-  async function handleInput() {
+  async function handleSearch() {
     if (input === '') {
       alert('Digite um CEP válido');
       return;
@@ -29,7 +29,7 @@ function App() {
           placeholder="Digite o CEP..."
           onChange={e => setInput(e.target.value)}
         />
-        <button onClick={handleInput}>
+        <button onClick={handleSearch}>
           <FiSearch className="searchIcon" size={25} />
         </button>
       </div>
