@@ -1,23 +1,24 @@
-import { useState } from 'react';
-import { FiSearch } from 'react-icons/fi';
-import api from './services/api';
+import { useState } from "react";
+import { FiSearch } from "react-icons/fi";
+import api from "./services/api";
 
 function App() {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const [cep, setCep] = useState({});
 
   async function handleSearch() {
-    if (input === '') {
-      alert('Digite um CEP válido');
+    if (input === "") {
+      alert("Digite um CEP válido");
       return;
     }
     try {
       const response = await api.get(`${input}/json`);
       setCep(response.data);
-      setInput('');
+      setInput("");
+      console.log(input);
     } catch {
-      alert('CEP não encontrado');
-      setInput('');
+      alert("CEP não encontrado");
+      setInput("");
     }
   }
   return (
@@ -28,6 +29,7 @@ function App() {
           type="text"
           placeholder="Digite o CEP..."
           onChange={e => setInput(e.target.value)}
+          value={input}
         />
         <button onClick={handleSearch}>
           <FiSearch className="searchIcon" size={25} />
