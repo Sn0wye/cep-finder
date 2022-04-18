@@ -37,7 +37,12 @@ function App() {
     }
   }
   return (
-    <div className="container">
+    <motion.div
+      className="container"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
       <h1>Buscador de CEP</h1>
       <div className="containerInput">
         <input
@@ -65,7 +70,7 @@ function App() {
           </span>
         </motion.main>
       )}
-    </div>
+    </motion.div>
   );
 }
 
