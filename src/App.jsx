@@ -1,6 +1,21 @@
 import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
+import { motion } from "framer-motion";
 import api from "./services/api";
+
+const containerVariants = {
+  hidden: {
+    y: "100vw",
+  },
+  visible: {
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: "80",
+      duration: 1,
+    },
+  },
+};
 
 function App() {
   const [input, setInput] = useState("");
@@ -37,14 +52,18 @@ function App() {
       </div>
 
       {Object.keys(cep).length > 0 && (
-        <main>
+        <motion.main
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           <span>Cep: {cep.cep} </span>
           <span>Logradouro: {cep.logradouro}</span>
           <span>Bairro: {cep.bairro}</span>
           <span>
             Cidade: {cep.localidade} - {cep.uf}
           </span>
-        </main>
+        </motion.main>
       )}
     </div>
   );
